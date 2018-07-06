@@ -1,0 +1,12 @@
+registry:
+  address: http://localhost:8761/eureka/
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${registry.address}
+server:
+  port: 8763
+spring:
+  application:
+    name: service-hi
