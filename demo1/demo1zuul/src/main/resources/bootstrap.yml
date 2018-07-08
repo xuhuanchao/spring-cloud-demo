@@ -36,7 +36,12 @@ zuul:
       sensitiveHeaders:
 
     legcy:
-      path: /*8
+      path: /*
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+ribbon:
+  ConnectionTimeout:3000
+  ReadTimeout: 60000
 
 
 # zuul.prefix : 给url加前缀
