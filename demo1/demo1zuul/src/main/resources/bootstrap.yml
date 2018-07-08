@@ -10,22 +10,48 @@ spring:
       retry:
         enabled: true
 
-zuul:
-  routes:
-    client:
-#      url: http://localhost:9880
-      path: /client/*
-      serviceId: service-hi
-      stripPrefix: false
-ribbon:
-  eureka:
-    enabled: false
-
-registry:
-  address: http://localhost:8761/eureka/
-
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${registry.address}
-  register-with-eureka: true
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      prefer-ip-address: true
+
+
+zuul:
+  ignored-services:
+  ignored-patterns: /**/admin/**
+  ignore-security-headers: true
+  routes:
+    client:
+#      url: http://localhost:9880
+      path: /client/**
+      serviceId: service-hi
+      sensitiveHeaders:
+    user:
+      prefix: /api
+      strip-prefix: true
+      path: /user/**
+      serviceId: service-user-v1
+      sensitiveHeaders:
+
+    legcy:
+      path: /*8
+
+
+# zuul.prefix : 给url加前缀
+# header 黑名单
+# zuul.sensitiveHeaders
+# zuul.routes.sensitiveHeaders
+
+#      不适用load-balance指定服务地址 url: http://example.com/users_service
+#      stripPrefix: false
+#ribbon:
+#  eureka:
+#    enabled: false
+#
+
+
+logging:
+  level:
+    com.netflix: debug
