@@ -17,7 +17,6 @@ eureka:
     instance:
       prefer-ip-address: true
 
-
 zuul:
   ignored-services:
   ignored-patterns: /**/admin/**
@@ -32,16 +31,24 @@ zuul:
       prefix: /api
       strip-prefix: true
       path: /user/**
-      serviceId: service-user-v1
+      serviceId: service-user
       sensitiveHeaders:
 
-    legcy:
-      path: /*
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+#    legcy:
+#      path: /**
+#  host:
+#    max-per-route-connections: 20
+#    max-total-connections: 200
+#  forceOriginalQueryStringEncoding: true  #强制使用请求的查询参数编码
 
-ribbon:
-  ConnectionTimeout:3000
-  ReadTimeout: 60000
+
+
+
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+#ribbon:
+#  ConnectionTimeout: 3000
+#  ReadTimeout: 60000
 
 
 # zuul.prefix : 给url加前缀
@@ -55,7 +62,9 @@ ribbon:
 #  eureka:
 #    enabled: false
 #
-
+ribbon:
+  ReadTimeout: 20000
+  SocketTimeout: 20000
 
 logging:
   level:
