@@ -10,3 +10,9 @@ eureka:
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
+management:
+  security:
+
+spring:
+  main:
+    banner-mode: "off"
