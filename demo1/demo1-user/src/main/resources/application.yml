@@ -43,3 +43,5 @@ basecfg:
   charset: utf-8
   connectTimeout: 5000
   readTimeout: 5000
+
+name: 张三

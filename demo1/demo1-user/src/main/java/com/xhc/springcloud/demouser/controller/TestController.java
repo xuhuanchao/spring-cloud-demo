@@ -3,6 +3,7 @@ package com.xhc.springcloud.demouser.controller;
 import com.xhc.springcloud.demouser.objwrap.CommResp;
 import com.xhc.springcloud.demouser.util.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,12 @@ public class TestController {
 	@Autowired
 	ExitCodeGenerator exitCodeGenerator;
 
+	@Value("${name}")
+	private String name;
+
+
+
+
 	@RequestMapping(value = "/getPageInfo", method = RequestMethod.GET)
 	public String getPageInfo(@RequestParam(value = "url") String url) {
 		if(url.indexOf("http://") == -1 || url.indexOf("https://") == -1){
@@ -46,6 +53,14 @@ public class TestController {
 		);
 
 		result.makeSuccessResp();
+		return result;
+	}
+
+	@RequestMapping(value = "/getVarName", method = RequestMethod.GET)
+	public CommResp<String> getVarName() {
+		CommResp<String> result = new CommResp<>();
+		result.makeSuccessResp();
+		result.setMsg(name);
 		return result;
 	}
 }
