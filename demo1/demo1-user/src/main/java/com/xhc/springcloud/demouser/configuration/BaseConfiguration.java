@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
+import java.util.Properties;
 
 @Configuration
 public class BaseConfiguration {
@@ -33,4 +35,14 @@ public class BaseConfiguration {
 		return restTemplate;
 	}
 
+	@Bean
+	public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource(){
+		ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
+		source.setBasenames("classpath:ValErrMsg");
+		Properties encodings = new Properties();
+		encodings.setProperty("classpath:ValErrMsg", "utf-8");
+		source.setFileEncodings(encodings);
+		source.setCacheSeconds(3600);
+		return source;
+	}
 }
