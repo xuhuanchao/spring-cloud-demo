@@ -1,6 +1,8 @@
 server:
   port: 8764
 
+
+
 spring:
   http:
     encoding:
@@ -10,7 +12,8 @@ spring:
 #  http:
 #    multipart:
 #      max-file-size: 2000Mb
-
+  profiles:
+      active: dev
 
 management:
   endpoint:
@@ -45,3 +48,79 @@ basecfg:
   readTimeout: 5000
 
 name: 张三
+
+
+######
+
+workgroup:
+  name: 监控
+  boss:
+    userId: 1001
+    userName: 张三疯
+    loginName: zhangsanfeng
+    sex: 1
+  roles:
+    - admin
+    - listen
+
+workgroup2:
+  name: 测试
+  boss:
+    userId: 1002
+    userName: 大眼睛
+    loginName: dayanjing
+    sex: 0
+  roles:
+    - admin
+    - listen
+
+
+
+# list map
+test-list-map:
+  list:
+    - userId: 2001
+      userName: 马三立
+      loginName: msl
+      sex: 1
+    - userId: 2002
+      userName: 张铁生
+      loginName: zts
+      sex: 1
+    - userId: 2003
+      userName: 王菲
+      loginName: wangfei
+      sex: 0
+  map:
+    2001:
+      userId: 2001
+      userName: 马三立
+      loginName: msl
+      sex: 1
+    2002:
+      userId: 2004
+      userName: 罗伯尼克
+
+
+
+---
+spring:
+  profiles: default
+
+workgroup3:
+  name: 产品
+  boss:
+    userId: 1003
+    userName: 馒头人
+    loginName: mantouren
+    sex: 1
+  roles:
+    - admin
+    - product
+
+
+
+
+
+
+

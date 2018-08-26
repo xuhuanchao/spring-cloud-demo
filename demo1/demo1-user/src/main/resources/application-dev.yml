@@ -1,0 +1,14 @@
+---
+spring:
+  profiles: dev
+
+workgroup3:
+  name: 产品
+  boss:
+    userId: 1004
+    userName: 铁皮人
+    loginName: Tin Man
+    sex: 1
+  roles:
+    - admin
+    - product
