@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by xuhuanchao on 2018/8/26.
  */
 @ConfigurationProperties("test-list-map")
-public class TestListMap {
+public class TestListMapProperties {
 
     private List<User> list = new ArrayList<>();
 

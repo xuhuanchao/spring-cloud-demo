@@ -1,8 +1,13 @@
 package com.xhc.springcloud.demouser.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 
 public class SpringUtil {
+
+	private static Logger logger = LoggerFactory.getLogger(SpringUtil.class);
 
 	private static ApplicationContext applicationContext = null;
 
@@ -21,7 +26,13 @@ public class SpringUtil {
 
 	//通过name获取 Bean.
 	public static Object getBean(String name){
-		return getApplicationContext().getBean(name);
+		try {
+			return getApplicationContext().getBean(name);
+		} catch (BeansException e) {
+			e.printStackTrace();
+			logger.error("没有找到name为"+name+"的Bean", e);
+			return null;
+		}
 
 	}
 

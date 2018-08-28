@@ -1,0 +1,18 @@
+
+---
+spring:
+  profiles: default
+  include:
+    - proddb
+    - prodmq
+
+workgroup3:
+  name: 产品
+  boss:
+    userId: 1003
+    userName: 馒头人
+    loginName: mantouren
+    sex: 1
+  roles:
+    - admin
+    - product

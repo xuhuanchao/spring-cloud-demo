@@ -103,20 +103,7 @@ test-list-map:
 
 
 
----
-spring:
-  profiles: default
 
-workgroup3:
-  name: 产品
-  boss:
-    userId: 1003
-    userName: 馒头人
-    loginName: mantouren
-    sex: 1
-  roles:
-    - admin
-    - product
 
 
 

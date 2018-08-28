@@ -1,22 +1,17 @@
 package com.xhc.springcloud.demouser.controller;
 
-import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
 import com.xhc.springcloud.demouser.objwrap.*;
+import com.xhc.springcloud.demouser.objwrap.entity.User;
 import com.xhc.springcloud.demouser.util.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -45,7 +40,7 @@ public class TestController {
 	private WorkGroupProperties3 workGroupProperties3;
 
 	@Autowired
-	private TestListMap testListMap;
+	private TestListMapProperties testListMap;
 
 
 	@RequestMapping(value = "/getPageInfo", method = RequestMethod.GET)
@@ -91,11 +86,18 @@ public class TestController {
 		return result;
 	}
 
-	@RequestMapping(value = "/getListMap", method = RequestMethod.GET)
-	public CommResp<TestListMap> getListMap(){
-		CommResp<TestListMap> result = new CommResp<>();
+	@RequestMapping(value = "/getListMapProperties", method = RequestMethod.GET)
+	public CommResp<TestListMapProperties> getListMapProperties(){
+		CommResp<TestListMapProperties> result = new CommResp<>();
 		result.makeSuccessResp().setData(testListMap);
 		return result;
 	}
 
+	@GetMapping(value = "/getDevUser")
+	public CommResp<User> getDevUser(){
+		CommResp<User> result = new CommResp<>();
+		User devUser = (User)SpringUtil.getBean("devUser");
+		result.makeSuccessResp().setData(devUser);
+		return result;
+	}
 }
