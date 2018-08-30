@@ -1,11 +1,14 @@
 package com.xhc.springcloud.demouser;
 
-import com.xhc.springcloud.demouser.objwrap.TestListMapProperties;
-import com.xhc.springcloud.demouser.objwrap.WorkGroupProperties;
-import com.xhc.springcloud.demouser.objwrap.WorkGroupProperties3;
+import com.xhc.springcloud.demouser.objwrap.entity.User;
+import com.xhc.springcloud.demouser.objwrap.properties.TestListMapProperties;
+import com.xhc.springcloud.demouser.objwrap.properties.WorkGroupProperties;
+import com.xhc.springcloud.demouser.objwrap.properties.WorkGroupProperties3;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 
 /**
@@ -13,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties({WorkGroupProperties3.class})
+@PropertySource(value= "classpath:config/1.properties", encoding = "utf-8")
 public class TestConfiguration {
 
     @Bean
@@ -23,5 +27,11 @@ public class TestConfiguration {
     @Bean
     public TestListMapProperties testListMap(){
         return new TestListMapProperties();
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix = "user2")
+    public User user2(){
+        return new User();
     }
 }

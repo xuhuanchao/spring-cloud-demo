@@ -1,4 +1,4 @@
-package com.xhc.springcloud.demouser.objwrap;
+package com.xhc.springcloud.demouser.objwrap.properties;
 
 import com.xhc.springcloud.demouser.objwrap.entity.User;
 import org.springframework.boot.context.properties.ConfigurationProperties;

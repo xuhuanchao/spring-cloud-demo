@@ -1,8 +1,15 @@
 package com.xhc.springcloud.demouser.controller;
 
+import com.netflix.discovery.converters.Auto;
 import com.xhc.springcloud.demouser.objwrap.*;
 import com.xhc.springcloud.demouser.objwrap.entity.User;
+import com.xhc.springcloud.demouser.objwrap.properties.TestListMapProperties;
+import com.xhc.springcloud.demouser.objwrap.properties.WorkGroupProperties;
+import com.xhc.springcloud.demouser.objwrap.properties.WorkGroupProperties2;
+import com.xhc.springcloud.demouser.objwrap.properties.WorkGroupProperties3;
 import com.xhc.springcloud.demouser.util.SpringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ExitCodeGenerator;
@@ -20,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping(value = "/test")
 public class TestController {
+
+	private static Logger logger = LoggerFactory.getLogger(TestController.class);
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -42,12 +51,16 @@ public class TestController {
 	@Autowired
 	private TestListMapProperties testListMap;
 
+	@Autowired
+	private User user2;
+
 
 	@RequestMapping(value = "/getPageInfo", method = RequestMethod.GET)
 	public String getPageInfo(@RequestParam(value = "url") String url) {
 		if(url.indexOf("http://") == -1 || url.indexOf("https://") == -1){
 			url = "http://" + url;
 		}
+		logger.info("input page url : " + url);
 		ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
 		return responseEntity.getBody();
 	}
@@ -98,6 +111,13 @@ public class TestController {
 		CommResp<User> result = new CommResp<>();
 		User devUser = (User)SpringUtil.getBean("devUser");
 		result.makeSuccessResp().setData(devUser);
+		return result;
+	}
+
+	@GetMapping(value = "/getUser2")
+	public CommResp<User> getUser2(){
+		CommResp<User> result = new CommResp<>();
+		result.makeSuccessResp().setData(user2);
 		return result;
 	}
 }

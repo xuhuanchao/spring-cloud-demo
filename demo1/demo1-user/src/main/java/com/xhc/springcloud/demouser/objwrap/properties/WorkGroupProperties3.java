@@ -1,4 +1,4 @@
-package com.xhc.springcloud.demouser.objwrap;
+package com.xhc.springcloud.demouser.objwrap.properties;
 
 import com.xhc.springcloud.demouser.objwrap.entity.User;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -11,8 +11,8 @@ import java.util.List;
  * Created by xuhuanchao on 2018/8/26.
  */
 @Component
-@ConfigurationProperties(prefix = "workgroup2")
-public class WorkGroupProperties2 {
+@ConfigurationProperties(prefix = "workgroup3")
+public class WorkGroupProperties3 {
 
     private String name;
 
