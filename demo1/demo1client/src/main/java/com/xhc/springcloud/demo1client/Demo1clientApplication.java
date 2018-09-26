@@ -44,7 +44,7 @@ public class Demo1clientApplication {
     @RequestMapping("/testKonws")
     public String testKnows() throws Exception{
         RestTemplate restTemplate = getInstance("gbk");
-        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://kde.cnki.net/KDE_WEB/GetData.svc/JsonEntrance?value=DataBase=CJFD%26Field0=SU%26Word0=subject%26PageIndex=0%26PageSize=10", String.class);
+        ResponseEntity<String> forEntity = restTemplate.getForEntity("http://www.baidu.com", String.class);
         String body = forEntity.getBody();
         System.out.println(body);
 
